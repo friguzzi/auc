@@ -1,3 +1,4 @@
+:- module(auc,[compute_areas/5,compute_areas_diagrams/5, compute_maxacc/2]).
 /* <module> auc
 
 This module computes the Area Under the Receiving Operating Charactersitics and
@@ -10,7 +11,6 @@ Proceedings of the 23rd international conference on Machine learning. ACM, 2006.
 @license Artistic License 2.0
 */
 
-:- module(auc,[compute_areas/5,compute_areas_diagrams/5, compute_maxacc/2]).
 
 %! compute_areas(+LG:list,-AUCROC:float,-ROC:list,-AUCPR:float,-PR:list) is det
 %
@@ -26,10 +26,12 @@ Proceedings of the 23rd international conference on Machine learning. ACM, 2006.
 %* AUCPR: the size of the area under the PR curve
 %* PR: the PR curve as a list of points that are couples of the form x-y
 %
-
-
-
 compute_areas(LG,AUCROC,ROC,AUCPR,PR):-
+  must_be(list, LG),
+  must_be(var, AUCROC),
+  must_be(var, ROC),
+  must_be(var, AUCPR),
+  must_be(var, PR),
   findall(E,member(_- \+(E),LG),Neg),
   length(LG,NEx),
   length(Neg,NNeg),
@@ -60,9 +62,12 @@ The predicate returns
 See http://cplint.lamping.unife.it/example/exauc.pl for an example
 
 */
-
-
 compute_areas_diagrams(LG,AUCROC,ROC,AUCPR,PR):-
+  must_be(list, LG),
+  must_be(var, AUCROC),
+  must_be(var, ROC),
+  must_be(var, AUCPR),
+  must_be(var, PR),
   compute_areas(LG,AUCROC,ROC0,AUCPR,PR0),
   %  write(ROC0),nl,write(PR0),nl,
   ROC = c3{data:_{x:x, rows:[x-'ROC'|ROC0]},
@@ -92,9 +97,9 @@ The predicate returns
 See http://cplint.lamping.unife.it/example/exauc.pl for an example
 
 */
-
-
 compute_maxacc(LG, MaxAcc) :-
+  must_be(list, LG),
+  must_be(var, MaxAcc),
   findall(E,member(_- \+(E),LG),Neg), %find all the pairs that contain a negative examples
   length(LG,NEx),
   length(Neg,NNeg),
@@ -123,7 +128,6 @@ The predicate returns
 * AccList: a list of all the possible accuracies
 
 */
-
 compute_acc_list([], TP, FP, FN, TN, AccList0, AccList) :-
   Acc is (TP+TN)/(TP+TN+FP+FN),
   append(AccList0, [Acc], AccList).
