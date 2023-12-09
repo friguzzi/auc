@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>auc.pl -- auc</title>
+
+<link rel="stylesheet" type="text/css" href="pldoc.css">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+
+<h1 class="file"><span style="float:right"></span>auc.pl -- auc</h1>
+
+<p>
+This module computes the Area Under the Receiving Operating Charactersitics and
+Precision Recall curves using the method of
+Davis, Jesse, and Mark Goadrich. "The relationship between Precision-Recall
+and ROC curves."
+Proceedings of the 23rd international conference on Machine learning. ACM, 2006.</p>
+
+<dl class="tags">
+<dt class="keyword-author">author</dt><dd class="keyword-author">- Fabrizio Riguzzi</dd>
+<dt class="keyword-license">license</dt><dd class="keyword-license">- Artistic License 2.0</dd>
+</dl>
+
+<dl>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="compute_areas/5"><b class="pred">compute_areas</b><var class="arglist">(+LG:list, -AUCROC:float, -ROC:list, -AUCPR:float, -PR:list)</var></a> is <b class="det">det</b></dt><dd class="defbody">The predicate takes as input
+<ul>
+<li>a list <var>LG</var> of pairs probability-literal in asceding order on probability
+where the literal can be an Atom (indicating a positive example) or \+ Atom,
+indicating a negative example while the probability is the probability of
+Atom of being true
+
+<p>
+The predicate returns</p></li>
+<li><var>AUCROC</var>: the size of area under the <var>ROC</var> curve</li>
+<li><var>ROC</var>: the <var>ROC</var> curve as a list of points that are couples of the form x-y</li>
+<li><var>AUCPR</var>: the size of the area under the <var>PR</var> curve</li>
+<li><var>PR</var>: the <var>PR</var> curve as a list of points that are couples of the form x-y</li>
+</ul>
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="compute_areas_diagrams/5"><b class="pred">compute_areas_diagrams</b><var class="arglist">(+LG:list, -AUCROC:float, -ROC:dict, -AUCPR:float, -PR:dict)</var></a> is <b class="det">det</b></dt><dd class="defbody">The predicate takes as input
+<ul>
+<li>a list <var>LG</var> of pairs probability-literal in asceding order on probability
+where the literal can be an Atom (indicating a positive example) or \+ Atom,
+indicating a negative example while the probability is the probability of
+Atom of being true
+
+<p>
+The predicate returns</p></li>
+<li><var>AUCROC</var>: the size of the area under the <var>ROC</var> curve</li>
+<li><var>ROC</var>: the <var>ROC</var> curve as a dict that can be visualized with the c3 renderer of
+SWISH</li>
+<li><var>AUCPR</var>: the size of the area under the <var>PR</var> curve</li>
+<li><var>PR</var>: the <var>PR</var> curve as a dict that can be visualized with the c3 renderer of SWISH
+See <a href="http://cplint.lamping.unife.it/example/exauc.pl">http://cplint.lamping.unife.it/example/exauc.pl</a> for an example</li>
+</ul>
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="compute_maxacc/2"><b class="pred">compute_maxacc</b><var class="arglist">(+LG:list, -MaxAcc)</var></a> is <b class="det">det</b></dt><dd class="defbody">The predicate takes as input
+<ul>
+<li>a list <var>LG</var> of pairs probability-literal in asceding order on probability
+where the literal can be an Atom (indicating a positive example) or \+ Atom,
+indicating a negative example while the probability is the probability of
+Atom of being true
+
+<p>
+The predicate returns</p></li>
+<li><var>MaxAcc</var>: the maximum obtainable accuracy
+See <a href="http://cplint.lamping.unife.it/example/exauc.pl">http://cplint.lamping.unife.it/example/exauc.pl</a> for an example</li>
+</ul>
+</dd>
+</dl>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 :- module(auc,[compute_areas/5,compute_areas_diagrams/5, compute_maxacc/2]).
-/* <module> auc
+
+/** <module> auc
 
 This module computes the Area Under the Receiving Operating Charactersitics and
 Precision Recall curves using the method of
